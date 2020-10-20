@@ -15,9 +15,10 @@
  * file.  In other words, link structures can only be used within the current
  * file.
  */
-struct link {
+struct link
+{
   int val;
-  struct link* next;
+  struct link *next;
 };
 
 /*
@@ -28,26 +29,44 @@ struct link {
  * code outside the current file can't access any fields of the list structure,
  * and pointers to list structures can't be dereferenced outside this file.
  */
-struct list {
-  struct link* head;
+struct list
+{
+  struct link *head;
 };
-
 
 /*
  * This function allocates, initializes, and fills a small linked list and
  * returns a pointer to it.
  */
-struct list* list_setup() {
-  struct list* list = malloc(sizeof(struct list));
-  struct link* next = NULL;
+struct list *list_setup()
+{
+  struct list *list = malloc(sizeof(struct list));
+  struct link *next = NULL;
   int i;
 
-  for (i = 10; i > 0; i--) {
-    struct link* link = malloc(sizeof(struct link));
+  for (i = 10; i > 0; i--)
+  {
+    struct link *link = malloc(sizeof(struct link));
     link->val = i;
     link->next = next;
     next = link;
   }
   list->head = next;
   return list;
+}
+
+int iterateList(struct list *currentList, int i)
+{
+  int posistion = 0;
+  struct link *currentLink = currentList->head;
+
+  while (currentLink != NULL && posistion != i)
+  {
+    currentLink = currentLink->next;
+    posistion++;
+  }
+  if (currentLink == NULL)
+    return -1;
+  else
+    return currentLink->val;
 }

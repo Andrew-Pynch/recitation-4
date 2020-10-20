@@ -12,17 +12,21 @@
 
 #include "list.h"
 
-int main() {
-  struct list* list = list_setup();
-  struct link* curr = list->head;  /* This line generates a compiler error. */
+int main()
+{
   int i = 0;
+  struct list *list = list_setup();
+  int curr = iterateList(list, i);
+  //struct link *curr = list->head; /* This line generates a compiler error. */
 
-  while (curr != NULL) {
+  while (curr != -1)
+  {
     /*
      * The next two lines each generate a compiler error.
      */
-    printf("== list[%2d]: %d\n", i, curr->val);
-    curr = curr->next;
+    curr = iterateList(list, i);
+    printf("== list[%2d]: %d\n", i, curr);
+    //curr = curr->next;
     i++;
   }
 

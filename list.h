@@ -8,7 +8,7 @@
 #define __LIST_H
 
 struct list;
-
-struct list* list_setup();
+struct list *list_setup();
+int iterateList(struct list *, int);
 
 #endif
